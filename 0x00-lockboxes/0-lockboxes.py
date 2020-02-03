@@ -10,7 +10,8 @@ def checkBox(box, matrix, keys_checked):
             if element not in keys_checked:
                 if element < len(matrix):
                     keys_checked.append(element)
-                    checkBox(matrix[element], matrix, keys_checked)
+                    if element is not (len(matrix) - 1):
+                        checkBox(matrix[element], matrix, keys_checked)
                 else:
                     return False
             else:
