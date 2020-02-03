@@ -5,13 +5,12 @@
 def checkBox(box, matrix, keys_checked):
     """ This method checks all elements in a box """
 
-    if len(box) > 0:
+    if len(box) >= 0:
         for element in box:
             if element not in keys_checked:
                 if element < len(matrix):
                     keys_checked.append(element)
-                    if element is not (len(matrix) - 1):
-                        checkBox(matrix[element], matrix, keys_checked)
+                    checkBox(matrix[element], matrix, keys_checked)
                 else:
                     return False
             else:
