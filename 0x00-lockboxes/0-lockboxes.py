@@ -26,6 +26,8 @@ def canUnlockAll(boxes):
     keys_checked = [0]
     keys = [i for i in range(len(boxes))]
 
+    if len(boxes) is 1:
+        return True
     value = checkBox(boxes[0], boxes, keys_checked)
     if value is False:
         return False
