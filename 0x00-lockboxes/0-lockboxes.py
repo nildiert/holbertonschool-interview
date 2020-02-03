@@ -8,8 +8,11 @@ def checkBox(box, matrix, keys_checked):
     if len(box) > 0:
         for element in box:
             if element not in keys_checked:
-                keys_checked.append(element)
-                checkBox(matrix[element], matrix, keys_checked)
+                if element < len(matrix):
+                    keys_checked.append(element)
+                    checkBox(matrix[element], matrix, keys_checked)
+                else:
+                    return False
             else:
                 pass
         return
@@ -23,5 +26,8 @@ def canUnlockAll(boxes):
     keys_checked = [0]
     keys = [i for i in range(len(boxes))]
 
-    checkBox(boxes[0], boxes, keys_checked)
-    return (all(elem in keys_checked for elem in keys))
+    value = checkBox(boxes[0], boxes, keys_checked)
+    if value is False:
+        return False
+    else:
+        return (all(elem in keys_checked for elem in keys))
