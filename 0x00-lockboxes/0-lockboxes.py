@@ -7,6 +7,8 @@ def checkBox(box, matrix, keys_checked, keys, boxes_checked):
 
     if len(matrix) is 1 and len(matrix[0]) is 1:
         return True
+    if type(box) is not list:
+        return False
 
     if len(box) > 0:
         for element in box:
