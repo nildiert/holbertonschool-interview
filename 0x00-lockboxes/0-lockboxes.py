@@ -21,6 +21,8 @@ def checkBox(box, matrix, keys_checked, keys, boxes_checked):
                 else:
                     pass
             else:
+                if len(boxes_checked) == len(matrix):
+                    return True
                 return False
     else:
         return
