@@ -35,6 +35,8 @@ def factor(num):
 
 
 def minOperations(n):
+    if n <= 0 or type(n) is not int:
+        return 0
     if not prime(n):
         values = factor(n)
         return sum(values)
