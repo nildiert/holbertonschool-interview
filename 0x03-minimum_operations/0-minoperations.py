@@ -2,22 +2,6 @@
 """ Min value """
 
 
-def prime(number):
-    """ Check if number is prime """
-    if number <= 2:
-        return True
-    else:
-        i = 1
-        value = 0
-        while i <= number:
-            if number % i == 0:
-                value += 1
-            if value > 2:
-                return False
-            i += 1
-        return True
-
-
 def factor(num):
     """ Return factors of number """
     prime_list = []
