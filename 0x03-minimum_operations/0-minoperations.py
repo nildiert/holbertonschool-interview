@@ -25,11 +25,10 @@ def factor(num):
     i = 1
     while value != 1:
         i += 1
-        if prime(i):
-            if value % i == 0:
-                while (value % i == 0 and value != 1):
-                    value /= i
-                    prime_list.append(i)
+        if value % i == 0:
+            while (value % i == 0 and value != 1):
+                value /= i
+                prime_list.append(i)
 
     return prime_list
 
@@ -37,8 +36,5 @@ def factor(num):
 def minOperations(n):
     if n < 2 or type(n) is not int:
         return 0
-    if not prime(n):
-        values = factor(n)
-        return sum(values)
-    else:
-        return n
+    values = factor(n)
+    return sum(values)
