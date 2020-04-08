@@ -25,10 +25,10 @@ def validUTF8(data):
                 return False
             if continue_flag == 0:
                 continue
-            else:
-                if not byte.startswith('10'):
-                    return False
-            continue_flag = continue_flag - 1
+        else:
+            if not byte.startswith('10'):
+                return False
+        continue_flag = continue_flag - 1
 
     # if continue_flag == 0:
     # return True
