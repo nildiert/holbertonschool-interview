@@ -10,7 +10,7 @@ def validUTF8(data):
     data set represents a valid UTF-8 encoding.
     """
 
-    # validation = False
+    validation = False
     continue_flag = 0
 
     for element in data:
@@ -30,6 +30,6 @@ def validUTF8(data):
                 return False
         continue_flag = continue_flag - 1
 
-    # if continue_flag == 0:
-    # return True
-    return True
+    if continue_flag == 0:
+        return True
+    return validation
