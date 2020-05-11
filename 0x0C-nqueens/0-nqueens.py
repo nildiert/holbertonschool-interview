@@ -7,6 +7,10 @@ import sys
 
 
 def print_board(board):
+    """ print_board
+    Args:
+        board - list of list with length sys.argv[1]
+    """
     new_list = []
     for i, row in enumerate(board):
         value = []
@@ -20,6 +24,14 @@ def print_board(board):
 
 
 def isSafe(board, row, col, number):
+    """ isSafe
+    Args:
+        board - list of list with length sys.argv[1]
+        row - row to check if is safe doing a movement in this position
+        col - col to check if is safe doing a movement in this position
+        number: size of the board
+    Return: True of False
+    """
 
     # Check this row in the left side
     for i in range(col):
@@ -39,6 +51,14 @@ def isSafe(board, row, col, number):
 
 
 def solveNQUtil(board, col, number):
+    """ Auxiliar method to find the posibilities of answer
+    Args:
+        board - Board to resolve
+        col - Number of col
+        number - size of the board
+    Returns:
+        All the posibilites to solve the problem
+    """
 
     if (col == number):
         print_board(board)
@@ -66,6 +86,10 @@ def solveNQUtil(board, col, number):
 
 
 def solve(number):
+    """ Find all the posibilities if exists
+    Args:
+        number - size of the board
+    """
     board = [[0 for i in range(number)]for i in range(number)]
 
     if not solveNQUtil(board, 0, number):
@@ -75,6 +99,11 @@ def solve(number):
 
 
 def validate(args):
+    """ Validate the input data to verify if the size to
+        answer is posible
+    Args:
+        args - sys.argv
+    """
     if (len(args) == 2):
         # Validate data
         number = int(args[1])
@@ -91,6 +120,9 @@ def validate(args):
 
 
 if __name__ == "__main__":
+    """ Main method to execute the application
+
+    """
 
     number = validate(sys.argv)
     solve(number)
