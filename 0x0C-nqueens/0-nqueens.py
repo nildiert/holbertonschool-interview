@@ -106,8 +106,9 @@ def validate(args):
     """
     if (len(args) == 2):
         # Validate data
-        number = int(args[1])
-        if not isinstance(number, int):
+        try:
+            number = int(args[1])
+        except Exception:
             print("N must be a number")
             exit(1)
         if number < 4:
