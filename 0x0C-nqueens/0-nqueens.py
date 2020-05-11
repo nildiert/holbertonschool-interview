@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
 """
 N Queens
 """
@@ -121,7 +121,6 @@ def validate(args):
 
 if __name__ == "__main__":
     """ Main method to execute the application
-
     """
 
     number = validate(sys.argv)
