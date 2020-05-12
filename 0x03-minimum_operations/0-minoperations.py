@@ -44,7 +44,7 @@ def factors(n):
 
 
 def minOperations(n):
-    if n < 2 or type(n) is not int:
+    if type(n) != int or n < 2:
         return 0
-    values = factors(n)
-    return int(sum(values))
+    numOperations = sum(factors(n))
+    return int(numOperations)
