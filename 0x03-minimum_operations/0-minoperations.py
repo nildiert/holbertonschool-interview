@@ -2,41 +2,23 @@
 """ Min value """
 
 
-# def factor(num):
-#     """ Return factors of number """
-#     prime_list = []
-#     value = num
-#     i = 1
-#     while value != 1:
-#         i += 1
-#         if value % i == 0:
-#             while (value % i == 0 and value != 1):
-#                 value /= i
-#                 prime_list.append(i)
+def factor(num):
+    """ Return factors of number """
+    prime_list = []
+    value = num
+    i = 1
+    while value != 1:
+        i += 1
+        if value % i == 0:
+            while (value % i == 0 and value != 1):
+                value /= i
+                prime_list.append(i)
 
-#     return prime_list
-
-import math
-
-
-def factors(n):
-    """calculates the factors of n number"""
-    mylist = []
-    while n % 2 == 0:
-        mylist.append(2)
-        n = n / 2
-    for i in range(3, int(math.sqrt(n)) + 1, 2):
-        while n % i == 0:
-            mylist.append(i)
-            n = n / i
-    if n > 2:
-        mylist.append(n)
-    return mylist
-
+    return prime_list
 
 
 def minOperations(n):
-    if type(n) != int or n < 2:
+    if n < 2 or type(n) is not int:
         return 0
-    numOperations = sum(factors(n))
-    return int(numOperations)
+    values = factor(n)
+    return sum(values)
