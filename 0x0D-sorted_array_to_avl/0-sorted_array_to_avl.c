@@ -70,10 +70,11 @@ avl_t *SortedArrayToAVL(int *array, size_t start, size_t end, avl_t *root)
  */
 avl_t *sorted_array_to_avl(int *array, size_t size)
 {
+	avl_t *new_node = NULL;
+
 	if (!array || !size)
 		return (NULL);
 
-	avl_t *new_node = NULL;
 
 	new_node = SortedArrayToAVL(array, 0, size - 1, NULL);
 	return (new_node);
