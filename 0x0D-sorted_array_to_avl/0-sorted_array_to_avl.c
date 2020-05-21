@@ -12,17 +12,17 @@
  */
 avl_t *binary_tree_node(avl_t *parent, int index, int *array)
 {
-  avl_t *new_node;
+	avl_t *new_node;
 
-  new_node = malloc(sizeof(avl_t));
-  if (!new_node)
-    return (NULL);
+	new_node = malloc(sizeof(avl_t));
+	if (!new_node)
+		return (NULL);
 
-  new_node->left = new_node->right = NULL;
-  new_node->n = array[index];
-  new_node->parent = parent;
+	new_node->left = new_node->right = NULL;
+	new_node->n = array[index];
+	new_node->parent = parent;
 
-  return (new_node);
+	return (new_node);
 }
 
 /**
@@ -37,27 +37,27 @@ avl_t *binary_tree_node(avl_t *parent, int index, int *array)
  */
 avl_t *SortedArrayToAVL(int *array, size_t start, size_t end, avl_t *root)
 {
-  size_t mid;
-  avl_t *new_node;
+	size_t mid;
+	avl_t *new_node;
 
-  if (start > end)
-    return (NULL);
+	if (start > end)
+		return (NULL);
 
-  mid = (start + end) / 2;
+	mid = (start + end) / 2;
 
-  new_node = binary_tree_node(root, mid, array);
-  if (!new_node)
-    return (NULL);
+	new_node = binary_tree_node(root, mid, array);
+	if (!new_node)
+		return (NULL);
 
-  /* Recursively construct the left subtree and make it left child of new_node*/
-  if (mid != start)
-    new_node->left = SortedArrayToAVL(array, start, mid - 1, new_node);
+	if (mid != start)
+		new_node->left = SortedArrayToAVL(array, start, mid - 1,
+						  new_node);
 
-  /* Recursively construct the right subtree and make it right child new_node*/
-  if (mid != end)
-    new_node->right = SortedArrayToAVL(array, mid + 1, end, new_node);
+	if (mid != end)
+		new_node->right = SortedArrayToAVL(array, mid + 1, end,
+						   new_node);
 
-  return (new_node);
+	return (new_node);
 }
 
 /**
@@ -70,11 +70,11 @@ avl_t *SortedArrayToAVL(int *array, size_t start, size_t end, avl_t *root)
  */
 avl_t *sorted_array_to_avl(int *array, size_t size)
 {
-  if (!array || !size)
-    return (NULL);
+	if (!array || !size)
+		return (NULL);
 
-  avl_t *new_node;
+	avl_t *new_node;
 
-  new_node = SortedArrayToAVL(array, 0, size - 1, NULL);
-  return (new_node);
+	new_node = SortedArrayToAVL(array, 0, size - 1, NULL);
+	return (new_node);
 }
