@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
 """
 Given a list of non-negative integers representing walls
 of width 1, calculate how much water will be retained
