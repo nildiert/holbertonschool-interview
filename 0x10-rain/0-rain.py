@@ -15,11 +15,10 @@ def rain(walls):
     """
     if type(walls) is not list:
         return 0
-
-    if not walls:
+    if len(walls) is 0:
         return 0
-
-
+    if sum(walls) == max(walls) or len(walls) < 3:
+        return 0    
     n = len(walls) - 1
     total_water = 0
 
