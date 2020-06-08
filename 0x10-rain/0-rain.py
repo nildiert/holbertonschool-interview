@@ -15,8 +15,11 @@ def rain(walls):
     """
     if type(walls) is not list:
         return 0
-    if len(walls) is 0:
+
+    if not walls:
         return 0
+
+
     n = len(walls) - 1
     total_water = 0
 
