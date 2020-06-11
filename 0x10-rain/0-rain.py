@@ -13,23 +13,17 @@ def rain(walls):
     Returns:
         If the list is empty return 0.
     """
-    if type(walls) is not list:
-        return 0
-    if len(walls) is 0:
-        return 0
-    if sum(walls) == max(walls) or len(walls) < 3:
-        return 0    
-    n = len(walls) - 1
+    n = len(walls)
     total_water = 0
 
     for i in range(1, n - 1):
         left = walls[i]
         for j in range(i):
             left = max(left, walls[j])
-        right = walls[j]
+        right = walls[i]
 
         for j in range(i + 1, n):
             right = max(right, walls[j])
 
-        total_water += total_water + (min(left, right) - walls[j])
+        total_water = total_water + (min(left, right) - walls[i])
     return total_water
