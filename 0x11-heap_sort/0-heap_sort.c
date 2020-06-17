@@ -1,6 +1,15 @@
 #include "sort.h"
 
-void swap(int *a, int *b, int *array, size_t n) {
+
+/**
+ * swap - Function to swap the the position of two elements
+ * @a: first integer
+ * @b: second integer
+ * @array: array of numbers
+ * @n: size of array
+ */
+void swap(int *a, int *b, int *array, size_t n)
+{
 
 	int temp = *a;
 	*a = *b;
@@ -9,7 +18,15 @@ void swap(int *a, int *b, int *array, size_t n) {
 }
 
 
-void heapify(int *arr, int n, int i, size_t size) {
+/**
+ * heapify - Find largest among root, left child and right chil
+ * @arr: array
+ * @n: size array
+ * @i: current position
+ * @size: size
+ */
+void heapify(int *arr, int n, int i, size_t size)
+{
 	/* Find largest among root, left child and right child */
 
 	int largest = i;
@@ -23,7 +40,8 @@ void heapify(int *arr, int n, int i, size_t size) {
 		largest = right;
 
 	/* Swap and continue heapifying if root is not largest */
-	if (largest != i) {
+	if (largest != i)
+	{
 		swap(&arr[i], &arr[largest], arr, size);
 		heapify(arr, n, largest, size);
 	}
@@ -31,7 +49,11 @@ void heapify(int *arr, int n, int i, size_t size) {
 }
 
 
-
+/**
+ * heap_sort - Build max heap
+ * @array: array
+ * @size: size of array
+ */
 void heap_sort(int *array, size_t size)
 {
 
@@ -41,7 +63,8 @@ void heap_sort(int *array, size_t size)
 		heapify(array, size, i - 1, size);
 
 	/* Heap sort */
-	for (i = size - 1; i > 0; i--) {
+	for (i = size - 1; i > 0; i--)
+	{
 		swap(&array[0], &array[i], array, size);
 
 		/* Heapify root element to get highest element at root again */
