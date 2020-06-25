@@ -33,24 +33,20 @@ int rec_bin(int *array, size_t first, size_t last, int value)
 {
 	size_t half;
 
-	if (first <= last)
+	if (first < last)
 	{
 		half = first + (last - first) / 2;
 		print_array(array, (int)first, (int)last);
-		if (array[half] == value)
-		{
-			if (array[half - 1] == value)
-				return (rec_bin(array, first, half, value));
-			else
-				return ((int)(half));
-		}
-		if (array[half] < value)
-			return (rec_bin(array, half + 1, last, value));
+		if (array[half] >= value)
+			return (rec_bin(array, first, half, value));
 		else
-			return (rec_bin(array, first, half - 1, value));
+			return (rec_bin(array, half + 1, last, value));
+				return ((int)(half));
 	}
-	else
-		return (-1);
+	if (array[first] == value)
+		return (first);
+	print_array(array, (int)first, (int)last);
+	return (-1);
 }
 
 
