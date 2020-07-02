@@ -1,102 +1,136 @@
-#include "slide_line.h"
 #include <stdlib.h>
+#include <stdio.h>
+
+#include "slide_line.h"
 
 /**
- * left - Move the direction to the left
+ * slide_zeros_left - Remove zeros
  *
- * @line: points to an array of integers containing size elements
- * @size: Number of elements in @array
+ * @line: Pointer to the array of int
+ * @size: Number of elements in @line
  */
 
-void left(int *line, size_t size)
+void slide_zeros_left(int *line, size_t size)
 {
-	size_t i, j, k;
-
-	for (i = 0, j = 0; i < size;)
+	int a, z, aux, index;
+	int count_zeros;
+	int lenght;
+	lenght = size;
+	for (a = 0; a < lenght; a++)
 	{
-		if (line[i] == 0)
-			for (; line[i] == 0; i++);
-		if (i == (size - 1))
-			break;
-		j = i + 1;
-		if (line[j] == 0)
-			for (; line[j] == 0; j++);
-		if (line[i] == line[j])
+		count_zeros = 0;
+		z = a;
+		while (line[z] == 0 && z < lenght)
 		{
-			line[i] = line[i] + line[j];
-			line[j] = 0;
-			i = j + 1;
+			count_zeros += 1;
+			z++;
 		}
-		else
-			i++;
-		j = 0;
-	}
-	for (i = 0, k = 0; i < size; i++)
-		if (line[i] != 0)
-			line[k++] = line[i];
-	while (k < size)
-		line[k++] = 0;
-}
-
-
-/**
- * right - Move the direction to the left
- *
- * @line: points to an array of integers containing size elements
- * @size: Number of elements in @array
- */
-
-void right(int *line, size_t size)
-{
-	size_t i, j;
-
-	for (i = size; i > 0; i--)
-	{
-		for (j = i - 1; j > 0; j--)
+		index = a + count_zeros;
+		if (index < lenght)
 		{
-			if (line[i - 1] != 0)
-			{
-				if (line[i - 1] == line[j - 1])
-				{
-					line[i - 1] = line[i - 1] + line[j - 1];
-					line[j - 1] = 0;
-					break;
-				}
-				if (line[i - 1] != line[j - 1] &&
-				    line[j - 1] != 0)
-					break;
-			}
-			if (line[i - 1] == 0)
-			{
-				if (line[j - 1] != 0)
-				{
-					line[i - 1] = line[j - 1];
-					line[j - 1] = 0;
-					i++;
-					break;
-				}
-			}
+			aux = line[index];
+			line[index] = line[a];
+			line[a] = aux;
 		}
 	}
 }
 
+/**
+ * slide_zeros_right - Remove zeros
+ *
+ * @line: Pointer to the array of int
+ * @size: Number of elements in @line
+ */
+
+void slide_zeros_right(int *line, size_t size)
+{
+	int a, z, aux, index;
+	int count_zeros;
+	for (a = size - 1; a >= 0; a--)
+	{
+		count_zeros = 0;
+		z = a;
+		while (line[z] == 0 && z >= 0)
+		{
+			count_zeros += 1;
+			z--;
+		}
+		index = a - count_zeros;
+		aux = line[index];
+		line[index] = line[a];
+		line[a] = aux;
+	}
+}
 
 /**
- * slide_line - Slide and merge lines
+ * add_numbers_left - Add numbers
  *
- * @line: points to an array of integers containing size elements
- * @size: Number of elements in @array
- * @direction: Number of elements in @array
- * Return: Number of elements in 1
+ * @line: Pointer to the array of int
+ * @size: Number of elements in @line
+ */
+
+void add_numbers_left(int *line, size_t size)
+{
+	int next, i, length;
+	length = size;
+	for (i = 0; i < length - 1; i++)
+	{
+		next = i + 1;
+		if (line[i] == line[next])
+		{
+			line[i] = line[i] + line[next];
+			line[next] = 0;
+		}
+	}
+}
+
+/**
+ * add_numbers_right - Add numbers
+ *
+ * @line: Pointer to the array of int
+ * @size: Number of elements in @line
+ */
+
+void add_numbers_right(int *line, size_t size)
+{
+	int behind, i, length;
+	length = size;
+	for (i = length - 1; i > 0; i--)
+	{
+		behind = i - 1;
+		if (line[i] == line[behind])
+		{
+			line[i] = line[i] + line[behind];
+			line[behind] = 0;
+		}
+	}
+}
+
+/**
+ * slide_line - 2048 game
+ *
+ * @line: Pointer to the array of int
+ * @size: Number of elements in @line
+ * @direction: Direction of the slide
  */
 
 int slide_line(int *line, size_t size, int direction)
 {
-	if (direction != SLIDE_LEFT && direction != SLIDE_RIGHT)
-		return (0);
-	if (direction == 0)
-		left(line, size);
 	if (direction == 1)
-		right(line, size);
+	{
+		slide_zeros_right(line, size);
+		add_numbers_right(line, size);
+		slide_zeros_right(line, size);
+	}
+	else if (direction == 1)
+	{
+		slide_zeros_left(line, size);
+		add_numbers_left(line, size);
+		slide_zeros_left(line, size);
+	}
+	else
+	{
+		return (0);
+	}
 	return (1);
 }
